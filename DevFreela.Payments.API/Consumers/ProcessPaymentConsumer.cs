@@ -34,9 +34,7 @@ namespace DevFreela.Payments.API.Consumers
 
             var factory = new ConnectionFactory
             {
-                HostName = "localhost",
-                UserName = "guest",
-                Password = "guest"
+                HostName = "localhost"                
 
             };
 
@@ -85,8 +83,8 @@ namespace DevFreela.Payments.API.Consumers
                  // Chama o metódo para processar o pagamento
                  ProcessPayment(paymentInfo);                 
 
-                 // Apos processar pagamento, mandar mensagem, republicar para uma outra fila, se um processo tiver interessado vai la e cata a mensagem
-                 var paymentApproved = new PaymentApprovedIntegrationEvent(paymentInfo.IdProjeto);
+                 // Apos processar pagamento, mandar mensagem, republicar para uma outra fila, se um p'rocesso tiver interessado vai la e cata a mensagem
+                 var paymentApproved = new PaymentApprovedIntegrationEvent(paymentInfo.IdProject);
                  //cria o json
                  var paymentApprovedJson = JsonSerializer.Serialize(paymentApproved);
                  // passa para os bytes pq o broker aceita bytes como mensagem
@@ -114,7 +112,7 @@ namespace DevFreela.Payments.API.Consumers
         }
 
         /// <summary>
-        /// 
+        /// Processando o pagamento
         /// </summary>
         /// <param name="paymentInfo"></param>
         public void ProcessPayment(PaymentInfoInputModel paymentInfo)

@@ -5,7 +5,7 @@
         /// <summary>
         /// Identifica ao qual projeto se refere
         /// </summary>
-        public int IdProjeto { get; set; }
+        public int IdProject { get; set; }
         public string CreditCardNumber { get; set; }
         public string Cvv { get; set; }
         public string ExpiresAt { get; set; }

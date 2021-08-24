@@ -1,3 +1,4 @@
+using DevFreela.Payments.API.Consumers;
 using DevFreela.Payments.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,8 @@ namespace DevFreela.Payments.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IPaymentService, PaymentService>();
+            // fica rodando necessario adicionar como HostdService
+            services.AddHostedService<ProcessPaymentConsumer>();
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -41,6 +44,8 @@ namespace DevFreela.Payments.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DevFreela.Payments.API v1"));
             }
 
             app.UseRouting();
